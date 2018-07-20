@@ -1,0 +1,14 @@
+/* Custom CSS */
+/* Set top padding of the page to match the height of the navbar */
+body {
+    padding-top: 90px;
+}
+/* Ugly hacks to fix the container within navbar functionality - should be fixed in Bootstrap 4 beta */
+.navbar-toggler {
+    z-index: 1;
+}
+@media (max-width: 576px) {
+    nav > .container {
+        width: 100%;
+    }
+}
