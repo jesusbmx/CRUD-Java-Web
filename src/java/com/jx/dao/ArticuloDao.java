@@ -2,7 +2,7 @@
 package com.jx.dao;
 
 import com.jx.config.Config;
-import com.jx.library.Database;
+import com.jx.library.database.SQLDatabase;
 import com.jx.model.Articulo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ArticuloDao implements AutoCloseable {
 
   /** Base de datos */
-  private final Database db;
+  private final SQLDatabase db;
   
   public ArticuloDao() {
     db = Config.getDataBaseMySQL();
@@ -162,7 +162,7 @@ public class ArticuloDao implements AutoCloseable {
       rs = db.query(sql, id);
       return rs.next() ? onRead(rs) : null;
     } finally {
-      Database.close(rs);
+      SQLDatabase.closeQuietly(rs);
     }
   }
   
@@ -198,7 +198,7 @@ public class ArticuloDao implements AutoCloseable {
       return list;
       
     } finally {
-      Database.close(rs);
+      SQLDatabase.closeQuietly(rs);
     }
   }
   
